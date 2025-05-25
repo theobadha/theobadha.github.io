@@ -1,46 +1,45 @@
 
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
-  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { path: "/", label: "About" },
-    { path: "/projects", label: "Projects" },
-    { path: "/blog", label: "Blog" },
-    { path: "/contact", label: "Contact" },
+    { id: "about", label: "About" },
+    { id: "projects", label: "Projects" },
+    { id: "blog", label: "Blog" },
+    { id: "contact", label: "Contact" },
   ];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 z-50 transition-colors">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link 
-            to="/" 
+          <button 
+            onClick={() => scrollToSection('about')}
             className="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             Alex Johnson
-          </Link>
+          </button>
           
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`text-sm font-medium transition-colors relative ${
-                  location.pathname === item.path
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                }`}
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               >
                 {item.label}
-                {location.pathname === item.path && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-600 dark:bg-blue-400" />
-                )}
-              </Link>
+              </button>
             ))}
             <ThemeToggle />
           </div>
@@ -66,18 +65,13 @@ const Navigation = () => {
           <div className="md:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-800">
             <div className="pt-4 space-y-2">
               {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`block py-2 text-sm font-medium transition-colors ${
-                    location.pathname === item.path
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                  }`}
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="block w-full text-left py-2 text-sm font-medium transition-colors text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                 >
                   {item.label}
-                </Link>
+                </button>
               ))}
             </div>
           </div>
