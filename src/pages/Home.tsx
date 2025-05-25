@@ -29,33 +29,33 @@ const Home = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A modern e-commerce platform built with React, Node.js, and PostgreSQL. Features include real-time inventory, payment processing, and admin dashboard.",
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+      title: "Ushahidi Platform Test Automation",
+      description: "Implemented comprehensive test automation framework from scratch using Cypress, achieving 40% automation coverage and reducing release times by 55%. Integrated automated tests into CI pipeline using GitHub Actions.",
+      technologies: ["Cypress", "JavaScript", "GitHub Actions", "CI/CD", "Test Automation"],
       github: "#",
       demo: "#",
       image: "bg-gradient-to-br from-green-400 to-blue-500"
     },
     {
-      title: "Task Management App", 
-      description: "A collaborative task management application with real-time updates, team collaboration features, and advanced filtering capabilities.",
-      technologies: ["TypeScript", "React", "Firebase", "Material-UI"],
+      title: "QA Sprint Management System", 
+      description: "Designed and managed comprehensive QA sprint workflows, creating structured task boards and tracking systems that improved team coordination and delivery timelines across development cycles.",
+      technologies: ["Jira", "Zephyr", "Agile", "Project Management", "Team Leadership"],
       github: "#",
       demo: "#",
       image: "bg-gradient-to-br from-purple-400 to-pink-500"
     },
     {
-      title: "Weather Dashboard",
-      description: "An interactive weather dashboard that provides detailed forecasts, weather maps, and historical data visualization.",
-      technologies: ["React", "D3.js", "OpenWeather API", "Tailwind CSS"],
+      title: "API Test Automation Framework",
+      description: "Developed robust API testing solutions for web and mobile applications, ensuring comprehensive test coverage and quality assurance across multiple product releases.",
+      technologies: ["Node.js", "API Testing", "Test Case Design", "Documentation"],
       github: "#",
       demo: "#",
       image: "bg-gradient-to-br from-blue-400 to-cyan-500"
     },
     {
-      title: "Portfolio Website",
-      description: "A responsive portfolio website with smooth animations, dark mode toggle, and optimized performance.",
-      technologies: ["React", "Framer Motion", "Tailwind CSS", "Vercel"],
+      title: "Cross-Platform Testing Solutions",
+      description: "Led manual and automated testing efforts for web and mobile platforms, implementing quality gates and testing methodologies that enhanced overall product reliability.",
+      technologies: ["Manual Testing", "Mobile Testing", "Web Testing", "Quality Assurance"],
       github: "#",
       demo: "#",
       image: "bg-gradient-to-br from-orange-400 to-red-500"
@@ -64,25 +64,25 @@ const Home = () => {
 
   const posts = [
     {
-      title: "Building Scalable React Applications",
-      excerpt: "Learn the best practices for structuring large React applications, managing state effectively, and optimizing performance.",
-      date: "March 15, 2024",
+      title: "Implementing Test Automation: From Zero to 40% Coverage",
+      excerpt: "A comprehensive guide on building test automation frameworks from scratch, sharing lessons learned from implementing Cypress testing at scale and achieving significant coverage milestones.",
+      date: "October 15, 2024",
+      readTime: "10 min read",
+      category: "Test Automation"
+    },
+    {
+      title: "Managing QA in Agile: Best Practices for Remote Teams",
+      excerpt: "Insights into effectively managing QA sprints, coordinating remote testing teams, and implementing agile methodologies that improve development cycles and product quality.",
+      date: "September 20, 2024",
       readTime: "8 min read",
-      category: "React"
+      category: "Agile & QA"
     },
     {
-      title: "The Future of Web Development",
-      excerpt: "Exploring emerging technologies and trends that will shape the future of web development, from WebAssembly to edge computing.",
-      date: "March 10, 2024",
+      title: "The Art of Bug Triage: Creating Comprehensive Reports",
+      excerpt: "Deep dive into effective bug triage processes, creating detailed defect reports, and establishing workflows that streamline the bug-fixing cycle for development teams.",
+      date: "August 25, 2024",
       readTime: "6 min read",
-      category: "Technology"
-    },
-    {
-      title: "Mastering TypeScript: Advanced Patterns",
-      excerpt: "Dive deep into advanced TypeScript patterns, generic constraints, and utility types that will improve your code quality.",
-      date: "March 5, 2024",
-      readTime: "12 min read",
-      category: "TypeScript"
+      category: "Quality Assurance"
     }
   ];
 
@@ -97,21 +97,21 @@ const Home = () => {
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                   Hi, I'm{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Alex Johnson
+                    Walter Obadha
                   </span>
                 </h1>
                 <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  A passionate full-stack developer with over 5 years of experience creating 
-                  beautiful, functional, and user-centered digital experiences. I specialize 
-                  in React, Node.js, and modern web technologies.
+                  Seasoned Quality Assurance Engineer with over 6 years of experience in both manual and automated testing. 
+                  I specialize in implementing robust test automation frameworks and have a proven track record of reducing 
+                  release times by up to 55% while enhancing product quality.
                 </p>
                 <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
-                  When I'm not coding, you can find me exploring new coffee shops, 
-                  hiking in the mountains, or experimenting with photography. I believe 
-                  in continuous learning and love sharing knowledge with the developer community.
+                  I'm passionate about agile methodologies, continuous improvement, and delivering high-quality software 
+                  solutions through meticulous testing and collaborative teamwork. I believe in releasing often and 
+                  advocate for quality-first development practices.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  {["React", "TypeScript", "Node.js", "Python", "AWS", "PostgreSQL"].map((skill) => (
+                  {["Cypress", "Test Automation", "Node.js", "Jira", "CI/CD", "Quality Assurance"].map((skill) => (
                     <span
                       key={skill}
                       className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium"
@@ -123,7 +123,7 @@ const Home = () => {
               </div>
               <div className="relative">
                 <div className="w-80 h-80 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white text-6xl font-bold">
-                  AJ
+                  WO
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-500/20 rounded-full blur-xl"></div>
               </div>
@@ -139,8 +139,8 @@ const Home = () => {
                 My Projects
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Here are some of the projects I've worked on. Each one represents a unique challenge 
-                and learning opportunity in my development journey.
+                Here are some key projects and initiatives I've led in quality assurance and test automation. 
+                Each represents significant improvements in testing efficiency and product quality.
               </p>
             </div>
 
@@ -170,12 +170,12 @@ const Home = () => {
                     <div className="flex gap-4">
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.github} className="flex-1">
-                          View Code
+                          View Details
                         </a>
                       </Button>
                       <Button size="sm" asChild>
                         <a href={project.demo} className="flex-1">
-                          Live Demo
+                          Case Study
                         </a>
                       </Button>
                     </div>
@@ -194,8 +194,8 @@ const Home = () => {
                 Blog
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                Thoughts, tutorials, and insights about web development, technology, 
-                and the ever-evolving world of software engineering.
+                Sharing insights about quality assurance, test automation, agile methodologies, 
+                and best practices from my experience in the software testing field.
               </p>
             </div>
 
@@ -239,8 +239,8 @@ const Home = () => {
                 Get In Touch
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                I'm always interested in new opportunities and interesting projects. 
-                Whether you have a question or just want to say hi, feel free to reach out!
+                I'm always interested in discussing quality assurance opportunities, test automation projects, 
+                or sharing insights about QA best practices. Feel free to reach out!
               </p>
             </div>
 
@@ -311,15 +311,19 @@ const Home = () => {
                     <div className="space-y-3">
                       <div>
                         <span className="text-gray-600 dark:text-gray-300">Email:</span>
-                        <span className="ml-2 text-blue-600 dark:text-blue-400">alex@example.com</span>
+                        <span className="ml-2 text-blue-600 dark:text-blue-400">wobadha@gmail.com</span>
                       </div>
                       <div>
-                        <span className="text-gray-600 dark:text-gray-300">Location:</span>
-                        <span className="ml-2 text-gray-900 dark:text-white">San Francisco, CA</span>
+                        <span className="text-gray-600 dark:text-gray-300">Phone:</span>
+                        <span className="ml-2 text-gray-900 dark:text-white">+254-726-805-557</span>
                       </div>
                       <div>
                         <span className="text-gray-600 dark:text-gray-300">Response Time:</span>
                         <span className="ml-2 text-gray-900 dark:text-white">Within 24 hours</span>
+                      </div>
+                      <div>
+                        <span className="text-gray-600 dark:text-gray-300">Education:</span>
+                        <span className="ml-2 text-gray-900 dark:text-white">BSc Computer Science & Technology</span>
                       </div>
                     </div>
                   </CardContent>
@@ -328,7 +332,7 @@ const Home = () => {
                 <Card className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
-                      Follow Me
+                      Professional Network
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
                       <Button variant="outline" size="sm" asChild>
@@ -343,12 +347,12 @@ const Home = () => {
                       </Button>
                       <Button variant="outline" size="sm" asChild>
                         <a href="#" className="flex items-center justify-center">
-                          Twitter
+                          Resume
                         </a>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
                         <a href="#" className="flex items-center justify-center">
-                          Medium
+                          Portfolio
                         </a>
                       </Button>
                     </div>
