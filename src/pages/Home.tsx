@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
+import { toast } from "sonner";
+import { Github, Linkedin, Briefcase } from "lucide-react";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -11,21 +13,60 @@ const Home = () => {
     email: "",
     message: "",
   });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Thanks for your message! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    const newErrors = { name: "", email: "", message: "" };
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+
+    setErrors(newErrors);
+
+    if (!newErrors.name && !newErrors.email && !newErrors.message) {
+      setIsSubmitting(true);
+      setTimeout(() => {
+        toast.success("Thanks for your message! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+        setIsSubmitting(false);
+      }, 500);
+    }
   };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+    if (errors[name as keyof typeof errors]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
   const projects = [
@@ -40,8 +81,6 @@ const Home = () => {
         "CI/CD",
         "Test Automation",
       ],
-      github: "#",
-      demo: "#",
       image: "bg-gradient-to-br from-green-400 to-blue-500",
     },
     {
@@ -55,8 +94,6 @@ const Home = () => {
         "Project Management",
         "Team Leadership",
       ],
-      github: "#",
-      demo: "#",
       image: "bg-gradient-to-br from-purple-400 to-pink-500",
     },
     {
@@ -69,8 +106,6 @@ const Home = () => {
         "Test Case Design",
         "Documentation",
       ],
-      github: "#",
-      demo: "#",
       image: "bg-gradient-to-br from-blue-400 to-cyan-500",
     },
     {
@@ -83,8 +118,6 @@ const Home = () => {
         "Web Testing",
         "Quality Assurance",
       ],
-      github: "#",
-      demo: "#",
       image: "bg-gradient-to-br from-orange-400 to-red-500",
     },
   ];
@@ -118,7 +151,7 @@ const Home = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen pt-20 bg-white dark:bg-gray-900 transition-colors">
+      <div id="main-content" className="min-h-screen pt-20 bg-white dark:bg-gray-900 transition-colors">
         {/* About Section */}
         <section
           id="about"
@@ -149,10 +182,10 @@ const Home = () => {
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {[
+                    "Playwright",
                     "Cypress",
                     "Test Automation",
                     "Node.js",
-                    "Jira",
                     "CI/CD",
                     "Quality Assurance",
                   ].map((skill) => (
@@ -207,7 +240,7 @@ const Home = () => {
                     <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
+                    <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
@@ -216,18 +249,6 @@ const Home = () => {
                           {tech}
                         </span>
                       ))}
-                    </div>
-                    <div className="flex gap-4">
-                      <Button variant="outline" size="sm" asChild>
-                        <a href={project.github} className="flex-1">
-                          View Details
-                        </a>
-                      </Button>
-                      <Button size="sm" asChild>
-                        <a href={project.demo} className="flex-1">
-                          Case Study
-                        </a>
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -254,7 +275,7 @@ const Home = () => {
               {posts.map((post, index) => (
                 <Card
                   key={index}
-                  className="group hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
+                  className="hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900"
                 >
                   <CardHeader>
                     <div className="flex items-center justify-between mb-2">
@@ -265,7 +286,7 @@ const Home = () => {
                         {post.date} • {post.readTime}
                       </div>
                     </div>
-                    <CardTitle className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <CardTitle className="text-xl font-bold text-gray-900 dark:text-white">
                       {post.title}
                     </CardTitle>
                   </CardHeader>
@@ -274,8 +295,8 @@ const Home = () => {
                       {post.excerpt}
                     </p>
                     <div className="mt-4">
-                      <span className="text-blue-600 dark:text-blue-400 font-medium text-sm group-hover:underline">
-                        Read more →
+                      <span className="text-gray-400 dark:text-gray-500 text-sm italic">
+                        Coming soon
                       </span>
                     </div>
                   </CardContent>
@@ -322,11 +343,13 @@ const Home = () => {
                         id="name"
                         name="name"
                         type="text"
-                        required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full"
+                        className={`w-full ${errors.name ? "border-red-500" : ""}`}
                       />
+                      {errors.name && (
+                        <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                      )}
                     </div>
                     <div>
                       <label
@@ -339,11 +362,13 @@ const Home = () => {
                         id="email"
                         name="email"
                         type="email"
-                        required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full"
+                        className={`w-full ${errors.email ? "border-red-500" : ""}`}
                       />
+                      {errors.email && (
+                        <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                      )}
                     </div>
                     <div>
                       <label
@@ -356,14 +381,16 @@ const Home = () => {
                         id="message"
                         name="message"
                         rows={6}
-                        required
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full"
+                        className={`w-full ${errors.message ? "border-red-500" : ""}`}
                       />
+                      {errors.message && (
+                        <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                      )}
                     </div>
-                    <Button type="submit" className="w-full">
-                      Send Message
+                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
@@ -392,22 +419,6 @@ const Home = () => {
                           +254-726-805-557
                         </span>
                       </div>
-                      <div>
-                        <span className="text-gray-600 dark:text-gray-300">
-                          Response Time:
-                        </span>
-                        <span className="ml-2 text-gray-900 dark:text-white">
-                          Within 24 hours
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-gray-600 dark:text-gray-300">
-                          Education:
-                        </span>
-                        <span className="ml-2 text-gray-900 dark:text-white">
-                          BSc Computer Science & Technology
-                        </span>
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -421,32 +432,33 @@ const Home = () => {
                       <Button variant="outline" size="sm" asChild>
                         <a
                           href="https://github.com/theobadha"
-                          className="flex items-center justify-center"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
                         >
+                          <Github className="h-4 w-4" />
                           GitHub
                         </a>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
                         <a
                           href="https://www.linkedin.com/in/walterobadha/"
-                          className="flex items-center justify-center"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
                         >
+                          <Linkedin className="h-4 w-4" />
                           LinkedIn
                         </a>
                       </Button>
                       <Button variant="outline" size="sm" asChild>
                         <a
-                          href="#"
-                          className="flex items-center justify-center"
+                          href="https://www.rvwhub.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
                         >
-                          Resume
-                        </a>
-                      </Button>
-                      <Button variant="outline" size="sm" asChild>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center"
-                        >
+                          <Briefcase className="h-4 w-4" />
                           Portfolio
                         </a>
                       </Button>
