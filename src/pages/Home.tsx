@@ -182,10 +182,10 @@ const Home = () => {
                 </p>
                 <div className="flex flex-wrap gap-3">
                   {[
+                    "Playwright",
                     "Cypress",
                     "Test Automation",
                     "Node.js",
-                    "Jira",
                     "CI/CD",
                     "Quality Assurance",
                   ].map((skill) => (
