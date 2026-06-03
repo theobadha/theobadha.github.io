@@ -419,22 +419,6 @@ const Home = () => {
                           +254-726-805-557
                         </span>
                       </div>
-                      <div>
-                        <span className="text-gray-600 dark:text-gray-300">
-                          Response Time:
-                        </span>
-                        <span className="ml-2 text-gray-900 dark:text-white">
-                          Within 24 hours
-                        </span>
-                      </div>
-                      <div>
-                        <span className="text-gray-600 dark:text-gray-300">
-                          Education:
-                        </span>
-                        <span className="ml-2 text-gray-900 dark:text-white">
-                          BSc Computer Science & Technology
-                        </span>
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
